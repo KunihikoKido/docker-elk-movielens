@@ -2,8 +2,8 @@ version: '3'
 
 services:
 
-  logstash-master-movie:
-    build: logstash-master-movie/
+  logstash-movie:
+    build: logstash-movie/
     environment:
       DATABASE_HOST: "db"
       DATABASE_PASSWORD: "1234"
@@ -23,8 +23,8 @@ services:
       - elasticsearch
       - db
 
-  logstash-event-tags:
-    build: logstash-event-tag/
+  logstash-rating:
+    build: logstash-rating/
     environment:
       DATABASE_HOST: "db"
       DATABASE_PASSWORD: "1234"
@@ -33,8 +33,8 @@ services:
       DATABASE_USERNAME: "movielens"
       DATABASE: "movielens"
       ELASTICSEARCH_HOST: "http://elasticsearch:9200"
-      ELASTICSEARCH_INDEX: "event-tag-%{+YYYY}"
-      ELASTICSEARCH_TYPE: "tags"
+      ELASTICSEARCH_INDEX: "event-rating-%{+YYYY}"
+      ELASTICSEARCH_TYPE: "ratings"
       PIPELINE_WORKERS: 1
       XPACK_MONITORING_ENABLED: "false"
       LOG_LEVEL: "info"
