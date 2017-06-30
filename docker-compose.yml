@@ -5,7 +5,7 @@ services:
   logstash-movie:
     build: logstash-movie/
     environment:
-      DATABASE_HOST: "db"
+      DATABASE_HOST: "mysql"
       DATABASE_PASSWORD: "1234"
       DATABASE_PORT: "3306"
       DATABASE_USE_SSL: "false"
@@ -21,12 +21,12 @@ services:
       - elk
     depends_on:
       - elasticsearch
-      - db
+      - mysql
 
   logstash-rating:
     build: logstash-rating/
     environment:
-      DATABASE_HOST: "db"
+      DATABASE_HOST: "mysql"
       DATABASE_PASSWORD: "1234"
       DATABASE_PORT: "3306"
       DATABASE_USE_SSL: "false"
@@ -42,9 +42,9 @@ services:
       - elk
     depends_on:
       - elasticsearch
-      - db
+      - mysql
 
-  db:
+  mysql:
     image: "mysql:5.7"
     environment:
       MYSQL_ROOT_PASSWORD: "1234"
