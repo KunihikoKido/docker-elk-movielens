@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS movielens.movies;
 DROP TABLE IF EXISTS movielens.ratings;
 DROP TABLE IF EXISTS movielens.tags;
-DROP TABLE IF EXISTS movielens.links;
 
 
 CREATE TABLE IF NOT EXISTS movielens.movies (
@@ -15,7 +14,7 @@ LOAD DATA LOCAL INFILE '/docker-entrypoint-initdb.d/movies.csv' INTO TABLE movie
 CREATE TABLE IF NOT EXISTS movielens.ratings (
   userId INT,
   movieId INT,
-  rating INT,
+  rating FLOAT,
   timestamp INT,
   FOREIGN KEY (movieId) REFERENCES movies(movieId)
 );
@@ -31,11 +30,3 @@ CREATE TABLE IF NOT EXISTS movielens.tags (
 );
 
 LOAD DATA LOCAL INFILE '/docker-entrypoint-initdb.d/tags.csv' INTO TABLE movielens.tags FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' IGNORE 1 LINES;
-
-CREATE TABLE IF NOT EXISTS movielens.links (
-  movieId INT,
-  imdbId INT,
-  tmdbId INT,
-  FOREIGN KEY (movieId) REFERENCES movies(movieId)
-);
-LOAD DATA LOCAL INFILE '/docker-entrypoint-initdb.d/links.csv' INTO TABLE movielens.links FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n' IGNORE 1 LINES;

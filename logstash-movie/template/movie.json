@@ -1,0 +1,9 @@
+{
+  "template": "master-movie",
+  "aliases": {
+    "movie": {}
+  },
+  "settings": {
+    "number_of_replicas": 0
+  }
+}
